@@ -1,5 +1,5 @@
 {
-  "image": " mcr.microsoft.com/devcontainers/typescript-node:18",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:18",
   "features": {
     "ghcr.io/devcontainers-contrib/features/ionic-cli:2": {},
     "ghcr.io/devcontainers-contrib/features/angular-cli:2": {},
@@ -9,5 +9,6 @@
             "antVersion": "latest"
         },
     "ghcr.io/akhildevelops/devcontainer-features/android-cli:0": {}
-  }
+  },
+  "mounts": ["type=bind,source=/dev/bus/usb,target=/dev/bus/usb"]
 }
