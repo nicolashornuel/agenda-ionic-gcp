@@ -10,5 +10,5 @@
         },
     "ghcr.io/akhildevelops/devcontainer-features/android-cli:0": {}
   },
-  "mounts": ["type=bind,source=/dev/bus/usb,target=/dev/bus/usb"]
+  //"mounts": ["type=bind,source=/dev/bus/usb,target=/dev/bus/usb"]
 }
