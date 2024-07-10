@@ -69,8 +69,27 @@ npm install @angular/fire
 debug android
 https://stackoverflow.com/questions/71366286/how-to-mount-dev-bus-usb-on-vscodes-devcontainer-for-docker
 https://help.arborxr.com/en/articles/9435953-how-to-use-adb-commands-in-macos-terminal
+
+https://www.repeato.app/setting-up-adb-for-wireless-connection-to-android-devices/#:~:text=Go%20to%20Developer%20Options%20and,the%20pairing%20code%20when%20prompted.
+
+Wireless ADB on Android 11 and Later
+Starting with Android 11, the process has been further simplified with a built-in wireless debugging feature. Here’s how to use it:
+
+Go to Developer Options and find Wireless debugging.
+Toggle on Wireless debugging and select Pair device with pairing code.
+Note the IP address and port, as well as the pairing code displayed.
+On your development machine, run the command adb pair [IP address and port] and enter the pairing code when prompted.
+After pairing, connect to your device with adb connect [IP address].
+Once again, you can confirm the connection with adb devices.
+
 ```sh
-adb devices
+cd platform-tools-darwin
+./adb pair 192.168.1.154:42151
+  Enter pairing code: 622787
+./adb connect 192.168.1.154:34098
+./adb devices
+npx cap run android
+./adb disconnect 192.168.1.154:34098
 ```
 
 “runArgs”: [ “ — privileged”,
