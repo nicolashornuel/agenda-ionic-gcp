@@ -1,38 +1,39 @@
 package io.ionic.starter;
 
+import static android.Manifest.permission.ACCESS_COARSE_LOCATION;
+import static android.Manifest.permission.ACCESS_FINE_LOCATION;
+import static android.content.Context.LOCATION_SERVICE;
+
 import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.location.LocationListener;
+import android.location.Location;
 import android.location.LocationManager;
+import android.os.Looper;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkManager;
-import org.json.JSONException;
+import androidx.core.content.ContextCompat;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
 
-public class LocationService extends IntentService {
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 
-  /**
-   * @param name
-   * @deprecated
-   */
-  public LocationService(String name) {
-    super(name);
-  }
+public class LocationWorker extends Worker {
 
-  @Override
-  protected void onHandleIntent(@Nullable Intent intent) {
-    String dataString = intent.getDataString();
-  }
+  private LocationRepository locationRepository;
 
-  /*public class LocationWorker extends Worker {
   public LocationWorker(
     @NonNull Context context,
     @NonNull WorkerParameters params) {
     super(context, params);
+    locationRepository = new LocationRepository(getApplicationContext());
   }
 
   @Override
@@ -41,23 +42,5 @@ public class LocationService extends IntentService {
 
     return Result.success();
   }
-
-
-
-}*/
-
-
-  /*  public void initFirebase() throws FileNotFoundException {
-    FirebaseOptions.Builder builder = new FirebaseOptions.Builder()
-      .setApplicationId("1:1076193011248:android:7a29e8b01eb32afb8eaff5")
-      .setApiKey("AIzaSyCgbl89dby3f5eocBAeyfUUKGzcc1DLzeE");
-    FirebaseApp.initializeApp(this, builder.build());
-  }*/
-
-  //Context applicationContext = getApplicationContext();
-  //workManager = WorkManager.getInstance(applicationContext);
-  //workManager.enqueue(OneTimeWorkRequest.from(LocationWorker.class));
-  //PeriodicWorkRequest periodicWork = new PeriodicWorkRequest.Builder(LocationWorker.class, 15, TimeUnit.MINUTES).addTag(TAG).build();
-  //workManager.enqueueUniquePeriodicWork("Location", ExistingPeriodicWorkPolicy.REPLACE, periodicWork);
 
 }

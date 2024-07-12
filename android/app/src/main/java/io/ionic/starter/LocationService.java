@@ -1,16 +1,32 @@
 package io.ionic.starter;
 
+import android.app.IntentService;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
 import android.location.LocationManager;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.work.OneTimeWorkRequest;
 import androidx.work.WorkManager;
 import org.json.JSONException;
 
-public class LocationService {
+public class LocationService extends IntentService {
+
+  /**
+   * @param name
+   * @deprecated
+   */
+  public LocationService(String name) {
+    super(name);
+  }
+
+  @Override
+  protected void onHandleIntent(@Nullable Intent intent) {
+    String dataString = intent.getDataString();
+  }
 
   /*public class LocationWorker extends Worker {
   public LocationWorker(
