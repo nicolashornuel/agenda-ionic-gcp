@@ -4,13 +4,13 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.Build;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctions;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -42,7 +42,7 @@ public class LocationRepository {
     jsonLocation.put("lat", location.getLatitude());
     jsonLocation.put("lng", location.getLongitude());
     jsonLocation.put("time", location.getTime());
-    jsonLocation.put("user", location.getProvider());
+    jsonLocation.put("user", Build.MANUFACTURER + "-" + Build.DEVICE);
     jsonLocation.put("date", new Date());
     jsonLocation.put("address", this.getCompleteAddressString(location));
     data.put("document", jsonLocation);
@@ -69,5 +69,4 @@ public class LocationRepository {
     }
     return strAdd;
   }
-
 }

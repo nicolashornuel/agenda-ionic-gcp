@@ -15,8 +15,6 @@ export class HomePage implements OnInit {
   constructor(private locationService: LocationService, private destroy$: DestroyService) { }
 
   ngOnInit(): void {
-    this.locationService.get$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(location => this.location = location)
+    //this.locationService.get$.pipe(takeUntil(this.destroy$)).subscribe(location => this.location = location)
   }
 }

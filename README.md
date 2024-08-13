@@ -95,3 +95,12 @@ npx cap run android
 “runArgs”: [ “ — privileged”,
 “-v”,
 “/dev/bus/usb:/dev/bus/usb” ],
+
+## apk
+https://www.delasign.com/blog/android-studio-test-release-apk-on-local-device/
+https://androidaps.readthedocs.io/fr/latest/Installing-AndroidAPS/Building-APK.html
+
+```sh
+ionic build
+npx cap sync
+```
