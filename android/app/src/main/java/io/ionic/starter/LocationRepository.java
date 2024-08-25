@@ -20,13 +20,13 @@ public class LocationRepository {
   private FirebaseFunctions functions;
   private Context context;
 
-  public LocationRepository(Context context) {
+  public LocationRepository(final Context context) {
     this.functions = FirebaseFunctions.getInstance();
     this.context = context;
   }
 
   //https://firebase.google.com/docs/functions/callable?hl=fr&gen=2nd#java
-  public Task<String> createOne(Location location) {
+  public Task<String> createOne(final Location location) {
     try {
       return functions.getHttpsCallable("onCallCreateOne")
         .call(this.mapper(location))
@@ -36,12 +36,13 @@ public class LocationRepository {
     }
   }
 
-  private JSONObject mapper(Location location) throws JSONException {
-    JSONObject data = new JSONObject();
-    JSONObject jsonLocation = new JSONObject();
+  private JSONObject mapper(final Location location) throws JSONException {
+    final JSONObject data = new JSONObject();
+    final JSONObject jsonLocation = new JSONObject();
     jsonLocation.put("lat", location.getLatitude());
     jsonLocation.put("lng", location.getLongitude());
     jsonLocation.put("time", location.getTime());
+    jsonLocation.put("provider", location.getProvider());
     jsonLocation.put("user", Build.MANUFACTURER + "-" + Build.DEVICE);
     jsonLocation.put("date", new Date());
     jsonLocation.put("address", this.getCompleteAddressString(location));
@@ -50,14 +51,14 @@ public class LocationRepository {
     return data;
   }
 
-  private String getCompleteAddressString(Location location) {
+  private String getCompleteAddressString(final Location location) {
     String strAdd = "";
-    Geocoder geocoder = new Geocoder(this.context, Locale.getDefault());
+    final Geocoder geocoder = new Geocoder(this.context, Locale.getDefault());
     try {
-      List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+      final List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
       if (addresses != null) {
-        Address returnedAddress = addresses.get(0);
-        StringBuilder strReturnedAddress = new StringBuilder();
+        final Address returnedAddress = addresses.get(0);
+        final StringBuilder strReturnedAddress = new StringBuilder();
 
         for (int i = 0; i <= returnedAddress.getMaxAddressLineIndex(); i++) {
           strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");

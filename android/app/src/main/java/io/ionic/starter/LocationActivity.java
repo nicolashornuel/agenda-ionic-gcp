@@ -16,8 +16,8 @@ public class LocationActivity extends BridgeActivity {
   }
 
   protected void callWorkManager() {
-    WorkManager workManager = WorkManager.getInstance(getApplicationContext());
-    WorkRequest workRequest = new PeriodicWorkRequest.Builder(LocationWorker.class, 15, TimeUnit.MINUTES).build();
+    final WorkManager workManager = WorkManager.getInstance(getApplicationContext());
+    final WorkRequest workRequest = new PeriodicWorkRequest.Builder(LocationWorker.class, 15, TimeUnit.MINUTES).build();
     workManager.enqueue(workRequest);
   }
 }
